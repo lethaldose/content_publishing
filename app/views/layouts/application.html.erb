@@ -18,6 +18,12 @@
 
 <% end %>
 
+<% if flash[:error].present? %>
+  <span class="alert alert-warning">
+    <%= flash[:error] %>
+   </span>
+<% end %>
+
 <div class="container">
   <%= yield %>
 </div>
