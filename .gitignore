@@ -19,9 +19,9 @@ public/assets
 _yardoc
 doc/
 config/thin.yml
-
+tmp/
 *.pid
-
+log
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
