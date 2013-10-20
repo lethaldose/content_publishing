@@ -28,3 +28,4 @@ log
 .DS_Store
 tags
 /performance
+db/
