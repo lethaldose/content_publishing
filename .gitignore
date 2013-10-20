@@ -1,0 +1,30 @@
+*.gem
+*.rbc
+.bundle
+.config
+.idea
+vendor/cache
+vendor/bundle
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+public/assets
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+config/thin.yml
+
+*.pid
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+.DS_Store
+tags
+/performance
