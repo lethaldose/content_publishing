@@ -1,8 +1,13 @@
+
+
+  <div class='article-form'>
 <h3> Create New Article </h3>
 
   <hr>
 
-  <div class='article-form'>
+  <%  if @article%> 
+    <%= render partial: 'errors/validation_error', locals: {errors: @article.errors} %>
+  <% end %>
 
 <%= form_for(:article, :url => articles_path, :html => { :method => :post }) do |f| %>
 
