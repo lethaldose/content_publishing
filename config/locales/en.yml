@@ -3,3 +3,6 @@
 
 en:
   not_authorized: 'You are not authorized to view this page'
+  articles:
+     successfully_created: New article was succesfully created
+     create_error: An error occured while creating the article

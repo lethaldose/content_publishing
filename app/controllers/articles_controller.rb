@@ -8,8 +8,14 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new params[:article]
-    article.save!
-    redirect_to articles_path
+    @article = Article.new params[:article]
+    if @article.save
+      flash[:success] = I18n.t('articles.successfully_created')
+      redirect_to articles_path
+    else
+      flash[:error] = I18n.t('articles.create_error')
+      render action: :new
+    end
   end
+
 end

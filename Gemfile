@@ -16,6 +16,11 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
+end
+
+group :test  do
+  gem "shoulda-matchers"
+  gem 'rspec'
   gem 'database_cleaner'
   gem 'factory_girl'
 end
