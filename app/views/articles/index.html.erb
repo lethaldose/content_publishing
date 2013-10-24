@@ -7,13 +7,16 @@
     <tr>
       <th>Id</th>
       <th>Name</th>
+      <th>Status</th>
+      <th></th>
     </tr>
   </thead>
   <% @articles.each do |art| %>
     <tr>
       <td> <%= art.id %></td>
       <td> <%= art.name %></td>
-      <td> <%= link_to( 'Edit', edit_user_path(id:art.id)) %> </td>
+      <td> <%= art.state %></td>
+      <td> <%= link_to( 'Edit', edit_article_path(id:art.id)) %> </td>
     </tr>
   <% end %>
 </table>

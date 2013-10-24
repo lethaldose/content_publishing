@@ -9,7 +9,13 @@ describe Article do
 
   context :new do
     it 'should have default draft state' do
-      Article.new.state.should == ArticleState::DRAFT
+      Article.new.should be_draft
+    end
+
+    it 'should have published state' do
+      article = Article.new
+      article.publish
+      article.should be_published
     end
   end
 
