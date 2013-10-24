@@ -7,6 +7,7 @@ en:
   articles:
      successfully_created: New article was succesfully created
      successfully_updated: Article was succesfully updated
+     successfully_published: Article was succesfully published
      create_error: An error occured while creating the article
      update_error: An error occured while updating the article
      does_not_exist: The request article does not exist

@@ -38,4 +38,11 @@ class ArticlesController < ApplicationController
       render action: :edit
     end
   end
+
+  def publish
+    @article = Article.find(params[:id])
+    @article.publish!
+    flash[:success] = I18n.t('articles.successfully_published')
+    redirect_to articles_path
+  end
 end

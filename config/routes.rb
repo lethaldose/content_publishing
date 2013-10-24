@@ -10,6 +10,7 @@ ContentPublishing::Application.routes.draw do
   end
 
   get 'articles/:id' => 'articles#edit'
+  put 'articles/:id/publish' => 'articles#publish', as: :publish_article
   resources :articles
 
   # The priority is based upon order of creation:

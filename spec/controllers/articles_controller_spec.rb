@@ -82,6 +82,17 @@ describe ArticlesController do
     end
 
 
+    it 'should not update published records' do
+      article = FactoryGirl.create(:article)
+      article.publish!
+
+      request_params = {id: article.id, article: {name: 'foo', content: 'bar'}}
+      put :update, request_params
+
+      response.should render_template :edit
+      flash[:error].should == I18n.t('articles.update_error')
+    end
+
     it 'should handle update errors' do
       orig_name = 'Orignal'
       article = FactoryGirl.create(:article, name: orig_name)
@@ -98,5 +109,22 @@ describe ArticlesController do
       flash[:error].should == I18n.t('articles.update_error')
     end
   end
+
+  context :publish do
+    it 'should publish the article' do
+      article = FactoryGirl.create(:article)
+      article.should be_draft
+
+      request_params = {id: article.id}
+      put :publish, request_params
+
+      response.should redirect_to articles_path
+      flash[:success].should == I18n.t('articles.successfully_published')
+
+      article.reload
+      article.should be_published
+    end
+  end
+
 end
 

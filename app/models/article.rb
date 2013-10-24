@@ -6,12 +6,14 @@ class Article < ActiveRecord::Base
   attr_accessible :state
 
   validates :name, uniqueness: {case_sensitive: false}, presence: true
-  validates :state, inclusion: { in: VALID_STATES}, presence: true
+  validates :state, inclusion: { in: VALID_STATES } , presence: true
+
 
   after_initialize :init
 
   def init
-    self.state = DRAFT
+    self.state = DRAFT if self.new_record?
   end
+
 end
 

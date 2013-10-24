@@ -11,11 +11,21 @@ describe Article do
     it 'should have default draft state' do
       Article.new.should be_draft
     end
+  end
 
+  context :publish do
     it 'should have published state' do
-      article = Article.new
-      article.publish
+      article = FactoryGirl.create(:article)
+      article.publish!
       article.should be_published
+    end
+
+    it 'should not allow update of published records' do
+      article = FactoryGirl.create(:article)
+      article.publish!
+      article.name = 'random-foo'
+      article.save.should be_false
+      article.errors[:state].should_not be_empty
     end
   end
 
