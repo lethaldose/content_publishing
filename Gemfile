@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.15'
-gem 'sqlite3'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
@@ -13,6 +12,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'pry-rails'
   gem 'pry'
   gem 'pry-nav'
