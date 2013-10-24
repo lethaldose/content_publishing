@@ -121,6 +121,9 @@ describe ArticlesController do
   end
 
   context :publish do
+
+    login_admin
+
     it 'should publish the article' do
       article = FactoryGirl.create(:article)
       article.should be_draft

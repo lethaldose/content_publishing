@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    edit
     render action: :edit
   end
 
@@ -45,6 +46,14 @@ class ArticlesController < ApplicationController
 
   def publish
     @article = Article.find(params[:id])
+
+    if !current_user.is_admin?
+      flash[:error] = I18n.t('articles.not_allowed_to_publish')
+      edit
+      render action: :edit
+      return
+    end
+
     @article.publish!
     flash[:success] = I18n.t('articles.successfully_published')
     redirect_to articles_path

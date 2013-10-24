@@ -20,5 +20,4 @@ class User < ActiveRecord::Base
     self.role ||= Role.find_by_name('reporter')
   end
 
-
 end
