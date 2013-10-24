@@ -1,0 +1,6 @@
+- if errors && errors.present?
+  ul.primary-error-text
+    - errors.each do |k,v|
+        li
+          = "#{k.capitalize} : #{v}"
+

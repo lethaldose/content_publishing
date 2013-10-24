@@ -65,7 +65,7 @@ describe ArticlesController do
 
   context :update do
     it 'should update article name and content' do
-      article = FactoryGirl.create(:article)
+      article = FactoryGirl.create(:article, name: 'orig_name')
 
       request_params = {id: article.id, article: {name: 'foo', content: 'bar'}}
       put :update, request_params
@@ -83,10 +83,13 @@ describe ArticlesController do
 
 
     it 'should handle update errors' do
-      article = FactoryGirl.create(:article)
+      orig_name = 'Orignal'
+      article = FactoryGirl.create(:article, name: orig_name)
 
       request_params = {id: article.id, article: {name: ''}}
       put :update, request_params
+
+      assigns(:original_article).name.should == orig_name
 
       updated_article = Article.find(article.id)
       updated_article.name.should_not be_empty

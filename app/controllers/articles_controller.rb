@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
       return
     end
 
-    @article = Article.find(params[:id])
+    @article = @original_article = Article.find(params[:id])
   end
 
   def update
@@ -33,6 +33,7 @@ class ArticlesController < ApplicationController
       flash[:success] = I18n.t('articles.successfully_updated')
       redirect_to articles_path
     else
+      @original_article = Article.find(@article.id)
       flash[:error] = I18n.t('articles.update_error')
       render action: :edit
     end

@@ -1,6 +1,9 @@
+
+= render partial: 'errors/validation_error', locals: {errors: @article.errors}
+
 h3
-  em.article-name.text-primary #{@article.name}
-  span.badge.article-state #{@article.state}
+  em.article-name.text-primary #{@original_article.name}
+  span.badge.article-state #{@original_article.state}
 
 hr
 
