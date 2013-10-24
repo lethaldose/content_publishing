@@ -2,7 +2,7 @@ legend Error Details
 .row-fluid.status
   .span2 Status Code
   .span4
-    =status.to_s if status.present?
+    = status.to_s if status.present?
 
 -if exception.present?
   .row-fluid.exception-message

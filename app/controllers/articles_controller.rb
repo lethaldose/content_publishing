@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def edit
     unless Article.exists?(params[:id])
-      render_error(404, "article_does")
+      render_error(404, I18n.t("articles.does_not_exist"))
       return
     end
 
