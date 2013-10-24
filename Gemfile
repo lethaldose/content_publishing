@@ -19,6 +19,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :production, :staging do
+  gem "pg"
+end
+
 group :test  do
   gem "shoulda-matchers"
   gem 'rspec'
