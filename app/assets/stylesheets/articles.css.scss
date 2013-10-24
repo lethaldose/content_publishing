@@ -2,29 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.text-area-width {
-  width:500px;
-  resize: none;
-}
-.text-width {
-  width:300px;
-}
+.article-form {
 
-.text-primary {
+  width:800px;
+
+  .text-area-width {
+    width:500px;
+    resize: none;
+  }
+  .text-width {
+    width:300px;
+  }
+
+  .text-primary {
     color: #428BCA;
-}
+  }
 
-.article-name
-{
-  /*font-weight: normal;*/
-}
+  .article-name
+  {
+    /*font-weight: normal;*/
+  }
 
-.article-state
-{
-  margin-left : 10px;
-}
+  .article-state
+  {
+    margin-left: 10px;
+    vertical-align: middle !important;
+  }
 
-.primary-error-text
-{
- color: #B94A48;
+  .primary-error-text
+  {
+    color: #B94A48;
+  }
 }

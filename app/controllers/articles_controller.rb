@@ -7,6 +7,10 @@ class ArticlesController < ApplicationController
   def new
   end
 
+  def show
+    render action: :edit
+  end
+
   def create
     @article = Article.new params[:article]
     if @article.save

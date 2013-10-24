@@ -63,6 +63,16 @@ describe ArticlesController do
     end
   end
 
+  context :show do
+    it 'should render edit page' do
+      article = FactoryGirl.create(:article)
+      get :show, {id: article.id}
+
+      response.should be_success
+      response.should render_template :edit
+    end
+  end
+
   context :update do
     it 'should update article name and content' do
       article = FactoryGirl.create(:article, name: 'orig_name')

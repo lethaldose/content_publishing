@@ -1,10 +1,12 @@
 
-= render partial: 'errors/validation_error', locals: {errors: @article.errors}
+.article-form
 
-h3
-  em.article-name.text-primary #{@original_article.name}
-  span.badge.article-state #{@original_article.state}
+  = render partial: 'errors/validation_error', locals: {errors: @article.errors}
 
-hr
+  h3
+    em.article-name.text-primary #{@original_article.name}
+    span.badge.article-state #{@original_article.state}
+    = render partial: 'publish'
+  hr
 
-= render partial: 'form', locals: { method: 'put', url: "#{article_path(@article.id)}"}
+  = render partial: 'form', locals: { method: 'put', url: "#{article_path(@article.id)}"}

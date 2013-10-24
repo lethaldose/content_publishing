@@ -1,0 +1,6 @@
+- if @article.published?
+  button.btn.disabled.pull-right Publish
+- else
+  = form_tag(publish_article_path(@article.id), method: :put, class: 'pull-right')
+    = submit_tag('Publish', class: "btn btn-success btn-default")
+
