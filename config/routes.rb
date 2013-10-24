@@ -9,6 +9,7 @@ ContentPublishing::Application.routes.draw do
     resources :users
   end
 
+  get 'articles/:id' => 'articles#edit'
   resources :articles
 
   # The priority is based upon order of creation:
