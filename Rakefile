@@ -5,3 +5,12 @@
 require File.expand_path('../config/application', __FILE__)
 
 ContentPublishing::Application.load_tasks
+
+desc 'run specs for app'
+task :spec do
+  RAILS_ENV='test'
+  [:environment, 'db:drop', 'db:migrate'].each do |task|
+    Rake::Task[task].invoke
+  end
+end
+
