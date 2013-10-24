@@ -19,5 +19,6 @@ FactoryGirl.define do
   factory :article, class: Article do |u|
     u.name { FactoryGirl.generate(:name) }
     u.content "some content"
+    u.state ArticleState::DRAFT
   end
 end

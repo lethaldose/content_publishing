@@ -28,5 +28,5 @@ log
 .DS_Store
 tags
 /performance
-db/
+db/*.sqlite3
 reports
