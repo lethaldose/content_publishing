@@ -1,11 +1,12 @@
 
 <%= form_for(:article, :url => articles_path, :html => { :method => :post }) do |f| %>
+
   <div><%= f.label :name %><br />
-  <%= f.text_field :name, :autofocus => true %></div>
+  <%= f.text_field :name, :autofocus => true ,  maxlength:'150' , class: 'text-width' %></div>
 
   <div><%= f.label :content %><br />
-  <%= f.text_field :content %></div>
+    <%= f.text_area :content, :rows => '15', class: 'text-area-width' %></div>
 
-<%= f.submit %>
+  <button type="submit" class="btn btn-primary"> Save Article</button>
 
 <% end %>
