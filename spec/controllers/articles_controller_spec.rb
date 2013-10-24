@@ -59,8 +59,41 @@ describe ArticlesController do
     it 'should give error invalid id' do
       get :edit, {id: 'invalid-id'}
 
-      response.should_not be_success
-      response.status.should == 404
+      response.should render_template 'errors/details'
+    end
+  end
+
+  context :update do
+    it 'should update article name and content' do
+      article = FactoryGirl.create(:article)
+
+      request_params = {id: article.id, article: {name: 'foo', content: 'bar'}}
+      put :update, request_params
+
+
+      assigns(:article).should_not be_nil
+      assigns(:article).id.should == article.id
+
+      updated_article = Article.find_by_name('foo')
+      updated_article.content.should == 'bar'
+
+      response.should redirect_to articles_path
+      flash[:success].should == I18n.t('articles.successfully_updated')
+    end
+
+
+    it 'should handle update errors' do
+      article = FactoryGirl.create(:article)
+
+      request_params = {id: article.id, article: {name: ''}}
+      put :update, request_params
+
+      updated_article = Article.find(article.id)
+      updated_article.name.should_not be_empty
+
+      response.should render_template :edit
+      flash[:error].should == I18n.t('articles.update_error')
     end
   end
 end
+

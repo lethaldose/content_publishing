@@ -28,6 +28,13 @@ class ArticlesController < ApplicationController
   end
 
   def update
-
+    @article = Article.find(params[:id])
+    if @article.update_attributes(params[:article])
+      flash[:success] = I18n.t('articles.successfully_updated')
+      redirect_to articles_path
+    else
+      flash[:error] = I18n.t('articles.update_error')
+      render action: :edit
+    end
   end
 end
