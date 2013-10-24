@@ -19,7 +19,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    unless Article.exists?(params[:id])
+      render_error(404, "article_does")
+      return
+    end
 
+    @article = Article.find(params[:id])
   end
 
   def update

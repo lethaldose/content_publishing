@@ -1,0 +1,7 @@
+h3
+  em.article-name.text-primary #{@article.name}
+  span.badge.article-state #{@article.state}
+
+hr
+
+= render partial: 'form', locals: { method: 'put', url: "#{edit_article_path(@article.id)}"}

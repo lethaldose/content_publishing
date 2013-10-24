@@ -1,0 +1,11 @@
+legend Error Details
+.row-fluid.status
+  .span2 Status Code
+  .span4
+    =status.to_s if status.present?
+
+-if exception.present?
+  .row-fluid.exception-message
+    .span2 Error Message
+    .span4
+      = exception.to_s

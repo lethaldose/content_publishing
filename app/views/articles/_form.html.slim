@@ -1,0 +1,11 @@
+= form_for(:article, :url => url, :html => { :method => method }) do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, :autofocus => true ,  maxlength:'150' , class: 'text-width'
+
+  .form-group
+    = f.label :content
+    = f.text_area :content, :rows => '15', class: 'text-area-width'
+
+  .clear
+  = submit_tag('Save Article', class: "btn btn-primary btn-default")

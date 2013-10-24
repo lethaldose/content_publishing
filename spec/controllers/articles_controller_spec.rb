@@ -4,6 +4,10 @@ describe ArticlesController do
 
   login_user
 
+  before :each do
+    Article.delete_all
+  end
+
   context :new do
     it 'should render for articles' do
       get :new
@@ -39,9 +43,24 @@ describe ArticlesController do
       response.should render_template :new
       flash[:error].should == I18n.t('articles.create_error')
     end
+  end
 
-    it 'should allow to create article with special characters' do
+  context :edit do
+    it 'should show article details' do
+      article = FactoryGirl.create(:article)
+      get :edit, {id: article.id}
 
+      response.should be_success
+      response.should render_template :edit
+
+      assigns(:article).id.should == article.id
+    end
+
+    it 'should give error invalid id' do
+      get :edit, {id: 'invalid-id'}
+
+      response.should_not be_success
+      response.status.should == 404
     end
   end
 end

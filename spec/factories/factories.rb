@@ -17,7 +17,7 @@ FactoryGirl.define do
   end
 
   factory :article, class: Article do |u|
-    u.name { FactoryGirl.generate(:name) }
+    u.name { FactoryGirl.generate(:article_name) }
     u.content "some content"
     u.state ArticleState::DRAFT
   end
