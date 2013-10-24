@@ -16,6 +16,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl'
 end
 
 gem 'jquery-rails'

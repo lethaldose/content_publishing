@@ -7,7 +7,9 @@ require 'rspec/autorun'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
+  
+FactoryGirl.find_definitions
+ 
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -35,4 +37,23 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
+
+  config.before(:suite) do
+    ['reporter', 'editor', 'admin'].each do |role|
+      Role.find_or_create_by_name role
+    end
+
+    if !User.find_by_email('admin@admin.com')
+      admin_user = User.new(email:'admin@admin.com', password:'password', password_confirmation:'password')
+      admin_user.role = Role.find_by_name('admin')
+      admin_user.save!
+    end
+  end
+
+  config.before(:each) do
+  end
+
 end
