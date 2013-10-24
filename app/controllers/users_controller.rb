@@ -1,8 +1,8 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
  def index
     if !current_user.is_admin?
-      flash[:error] = 'Not authorized'
+      flash[:error] = I18n.t('not_authorized')
       redirect_to root_path
     end
 

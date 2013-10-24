@@ -1,0 +1,11 @@
+
+<%= form_for(:article, :url => articles_path, :html => { :method => :post }) do |f| %>
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
+
+  <div><%= f.label :content %><br />
+  <%= f.text_field :content %></div>
+
+<%= f.submit %>
+
+<% end %>

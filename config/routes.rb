@@ -5,7 +5,11 @@ ContentPublishing::Application.routes.draw do
 
   root :to => "home#index"
 
-  match '/users' => 'user#index'
+  scope "/admin" do
+    resources :users
+  end
+
+  resources :articles
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

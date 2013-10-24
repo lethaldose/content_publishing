@@ -9,7 +9,7 @@
     <tr>
       <td> <%= u.id %></td>
       <td> <%= u.email %></td>
-      <td> <%= link_to( 'Edit', edit_user_registration_path(u.id)) %> </td>
+      <td> <%= link_to( 'Edit', edit_user_path(id:u.id)) %> </td>
     </tr>
   <% end %>
 </table>
