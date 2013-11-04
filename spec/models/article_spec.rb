@@ -11,6 +11,15 @@ describe Article do
 
   context :author do
     it { should belong_to(:author) }
+
+    it 'should give articles editable by author' do
+      article = FactoryGirl.create(:article)
+      article2 = FactoryGirl.create(:article)
+
+      editable = Article.editable_by(article.author)
+      editable.should have(1).item
+      editable.first.id.should == article.id
+    end
   end
 
   context :new do

@@ -2,6 +2,8 @@ class Article < ActiveRecord::Base
   include ActiveModel::Validations
   include ::ArticleState
 
+  SORT_BY_UPDATED_AT_DESC = 'updated_at desc'
+
   attr_accessible :name, :content
   attr_accessible :state
 
@@ -13,9 +15,14 @@ class Article < ActiveRecord::Base
 
   after_initialize :init
 
+  scope :all_for_author, ->(author) { where(author_id: author).order(SORT_BY_UPDATED_AT_DESC) }
+
   def init
     self.state = DRAFT if self.new_record?
   end
 
+  def self.editable_by user
+    user.is_editor? ? Article.order('updated_at desc') : Article.all_for_author(user)
+  end
 end
 

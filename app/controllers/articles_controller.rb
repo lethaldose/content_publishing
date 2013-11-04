@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = current_user.is_editor? ? Article.order('updated_at desc') : Article.where(author_id: current_user).order('updated_at desc')
+    @articles = Article.editable_by(current_user)
   end
 
   def new
