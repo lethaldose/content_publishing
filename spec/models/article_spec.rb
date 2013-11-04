@@ -4,11 +4,13 @@ describe Article do
 
   context :validation do
     it {should validate_presence_of(:name) }
+    it {should validate_presence_of(:author) }
+    it {should validate_presence_of(:state) }
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  context :user do
-    it { should belong_to(:user) }
+  context :author do
+    it { should belong_to(:author) }
   end
 
   context :new do

@@ -27,5 +27,6 @@ FactoryGirl.define do
     u.name { FactoryGirl.generate(:article_name) }
     u.content "some content"
     u.state ArticleState::DRAFT
+    association :author, factory: :user
   end
 end

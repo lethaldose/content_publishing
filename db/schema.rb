@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20131104064606) do
     t.string   "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "user_id"
+    t.string   "author_id"
   end
 
   create_table "roles", :force => true do |t|
