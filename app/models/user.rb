@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     self.role.name == 'admin'
   end
 
+  def is_editor?
+    self.role.name == 'editor'
+  end
+
   private
 
   def set_default_role

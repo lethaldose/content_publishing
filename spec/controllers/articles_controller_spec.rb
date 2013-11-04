@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe ArticlesController do
 
-  login_user
+  include ::ControllerMacros
 
   before :each do
+    login_user
     Article.delete_all
   end
 
@@ -122,7 +123,9 @@ describe ArticlesController do
 
   context :publish do
 
-    login_admin
+    before :each do
+      login_admin
+    end
 
     it 'should publish the article' do
       article = FactoryGirl.create(:article)
@@ -139,5 +142,54 @@ describe ArticlesController do
     end
   end
 
+  context :index do
+
+    it 'should show articles for current logged in user' do
+
+      author = FactoryGirl.create(:user)
+      login_user author
+
+      FactoryGirl.create(:article, author: author)
+      FactoryGirl.create(:article, author: author)
+      FactoryGirl.create(:article)
+
+      get :index
+      response.should be_ok
+
+      articles = assigns(:articles)
+      articles.should have(2).items
+      articles.first.author.should  == author
+      articles[1].author.should  == author
+    end
+
+    it 'should show all articles to editor' do
+      editor = FactoryGirl.create(:user, role: Role.find_by_name('editor'))
+      login_user editor
+
+      FactoryGirl.create(:article)
+      FactoryGirl.create(:article)
+
+      get :index
+      response.should be_ok
+
+      articles = assigns(:articles)
+      articles.should have(2).items
+    end
+
+    it 'should sort descending on updated_at attribute' do
+      author = FactoryGirl.create(:user)
+      login_user author
+
+      article1 = FactoryGirl.create(:article, author: author)
+      article2 = FactoryGirl.create(:article, author: author)
+
+      get :index
+      response.should be_ok
+
+      articles = assigns(:articles)
+      articles[0].should == article2
+      articles[1].should == article1
+    end
+  end
 end
 

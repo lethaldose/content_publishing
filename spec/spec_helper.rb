@@ -42,6 +42,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
 
   config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
     ['reporter', 'editor', 'admin'].each do |role|
       Role.find_or_create_by_name role
     end
@@ -51,9 +52,6 @@ RSpec.configure do |config|
       admin_user.role = Role.find_by_name('admin')
       admin_user.save!
     end
-  end
-
-  config.before(:each) do
   end
 
 end

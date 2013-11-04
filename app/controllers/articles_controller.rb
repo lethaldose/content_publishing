@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = current_user.is_editor? ? Article.order('updated_at desc') : Article.where(author_id: current_user).order('updated_at desc')
   end
 
   def new
@@ -61,3 +61,4 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 end
+
