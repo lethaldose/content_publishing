@@ -8,6 +8,7 @@ class Article < ActiveRecord::Base
   validates :name, uniqueness: {case_sensitive: false}, presence: true
   validates :state, inclusion: { in: VALID_STATES } , presence: true
 
+  belongs_to :user
 
   after_initialize :init
 

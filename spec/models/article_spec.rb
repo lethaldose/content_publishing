@@ -7,6 +7,10 @@ describe Article do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
+  context :user do
+    it { should belong_to(:user) }
+  end
+
   context :new do
     it 'should have default draft state' do
       Article.new.should be_draft
