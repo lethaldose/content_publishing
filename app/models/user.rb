@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     self.role.name == 'editor'
   end
 
+  def can_publish?
+    is_admin? or is_editor?
+  end
+
   private
 
   def set_default_role

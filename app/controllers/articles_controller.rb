@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
   def publish
     @article = Article.find(params[:id])
 
-    if !current_user.is_admin?
+    if !current_user.can_publish?
       flash[:error] = I18n.t('articles.not_allowed_to_publish')
       edit
       render action: :edit
