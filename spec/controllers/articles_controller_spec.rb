@@ -163,7 +163,7 @@ describe ArticlesController do
     end
 
     it 'should show all articles to editor' do
-      editor = FactoryGirl.create(:user, role: Role.find_by_name('editor'))
+      editor = FactoryGirl.create(:editor)
       login_user editor
 
       FactoryGirl.create(:article)

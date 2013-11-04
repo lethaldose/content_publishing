@@ -16,6 +16,10 @@ FactoryGirl.define do
     u.password_confirmation "un_enc_password"
   end
 
+  factory :editor, parent: :user do |u|
+    u.role { Role.find_by_name('editor') }
+  end
+
   factory :admin, class: User do |u|
     u.email { FactoryGirl.generate(:email) }
     u.role { Role.find_by_name('admin') }

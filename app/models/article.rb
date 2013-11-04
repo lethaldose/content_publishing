@@ -22,7 +22,25 @@ class Article < ActiveRecord::Base
   end
 
   def self.editable_by user
-    user.is_editor? ? Article.order('updated_at desc') : Article.all_for_author(user)
+    (user.is_editor? or user.is_admin?) ? Article.order(SORT_BY_UPDATED_AT_DESC) : Article.all_for_author(user)
+  end
+
+  def self.draft_articles_count_for author
+    self.count_by_state author, ArticleState::DRAFT
+  end
+
+  def self.published_articles_count_for author
+    self.count_by_state author, ArticleState::PUBLISHED
+  end
+
+  private
+
+  def self.count_by_state author, state
+    if author.is_editor? or author.is_admin?
+      Article.where({state:state}).count
+    else
+      Article.where(author_id: author).where({state:state}).count
+    end
   end
 end
 
