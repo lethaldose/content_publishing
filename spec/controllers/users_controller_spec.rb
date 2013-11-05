@@ -85,7 +85,7 @@ describe  UsersController do
 
     it 'should handle errors' do
       user = FactoryGirl.create(:user, email: 'foo@baz.com')
-      request_params = {id: user.id, user: {password: ''}}
+      request_params = {id: user.id, user: {password: '1'}}
       put :update, request_params
 
       response.should render_template :edit
