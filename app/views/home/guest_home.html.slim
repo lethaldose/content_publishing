@@ -11,7 +11,7 @@ h4
           h3 
             .alert.alert-info
               = art.name
-          a
+          a href= article_path(art.id)
             p
               = display_content_text(art.content)
 

@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
 
+  skip_before_filter :authenticate_user!, only: [:show]
+  before_filter :article_exists? , only: [:show, :edit, :update]
+
   def index
     @articles = Article.editable_by(current_user)
   end
@@ -8,8 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    edit
-    render action: :edit
+    @article = Article.find(params[:id])
   end
 
   def create
@@ -26,11 +28,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless Article.exists?(params[:id])
-      render_error(404, I18n.t("articles.does_not_exist"))
-      return
-    end
-
     @article = @original_article = Article.find(params[:id])
   end
 
@@ -60,5 +57,15 @@ class ArticlesController < ApplicationController
     flash[:success] = I18n.t('articles.successfully_published')
     redirect_to articles_path
   end
+
+  private
+
+  def article_exists?
+    unless Article.exists?(params[:id])
+      render_error(404, I18n.t("articles.does_not_exist"))
+      return
+    end
+  end
+
 end
 

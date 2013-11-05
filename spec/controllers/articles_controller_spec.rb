@@ -65,12 +65,12 @@ describe ArticlesController do
   end
 
   context :show do
-    it 'should render edit page' do
+    it 'should render article' do
       article = FactoryGirl.create(:article)
       get :show, {id: article.id}
 
       response.should be_success
-      response.should render_template :edit
+      assigns(:article).id.should == article.id
     end
   end
 
