@@ -1,7 +1,7 @@
-- if @article.published? or !current_user.can_publish?
+- if @article.published?
   .publisher
     small.small = "Published by: #{@article.publisher.email}"
-- else
+- elsif current_user.can_publish?
   = form_tag(publish_article_path(@article.id), method: :put, class: 'pull-right')
     = submit_tag('Publish', class: "btn btn-success btn-default")
 

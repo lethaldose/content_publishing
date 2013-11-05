@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def generic_error exception
+    require 'pry'; binding.pry
+    
     raise exception if Rails.env =~ /test/
     render_error 500, exception
   end
