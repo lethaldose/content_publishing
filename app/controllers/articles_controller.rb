@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: [:show]
   before_filter :article_exists? , only: [:show, :edit, :update]
+  before_filter :can_update? , only: [:edit, :update]
+
 
   authorize_resource
 
@@ -61,6 +63,13 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def can_update?
+    unless Article.find(params[:id]).can_update? current_user
+      render_error(400, I18n.t("not_authorized"))
+      return
+    end
+  end
 
   def article_exists?
     unless Article.exists?(params[:id])

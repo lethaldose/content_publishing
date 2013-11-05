@@ -35,6 +35,14 @@ class Article < ActiveRecord::Base
     self.count_by_state author, ArticleState::PUBLISHED
   end
 
+  def can_update? user
+    if user.is_admin? or user.is_editor? or self.author == user
+      return true
+    end
+
+    false
+  end
+
   private
 
   def self.count_by_state author, state
