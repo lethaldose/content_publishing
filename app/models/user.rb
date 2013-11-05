@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   # attr_accessible :title, :body
 
   belongs_to :role
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   private
 
   def set_default_role
-    self.role ||= Role.find_by_name('reporter')
+    self.role ||= Role.find_by_name('reporter') if self.new_record?
   end
 
 end

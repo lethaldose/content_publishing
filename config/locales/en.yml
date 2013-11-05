@@ -3,6 +3,7 @@
 
 en:
   not_authorized: 'You are not authorized to view this page'
+  bad_request: 'The request params you sent are invalid'
 
   articles:
      successfully_created: New article was succesfully created

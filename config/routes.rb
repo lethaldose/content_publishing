@@ -1,7 +1,13 @@
 ContentPublishing::Application.routes.draw do
   devise_for :admins
 
-  devise_for :users
+  devise_for :users,  controllers: { :registrations => "users/registrations" }
+  #get 'new_user' => 'users/registrations#create_new_user'
+
+  devise_scope :user do
+    get "new_user" => 'users/registrations#new_user'
+    post "create_new_user" => 'users/registrations#create_new_user'
+  end
 
   root :to => "home#index"
 
