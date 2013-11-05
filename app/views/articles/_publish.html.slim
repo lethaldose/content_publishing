@@ -1,4 +1,4 @@
-- if @article.published?
+- if @article.published? or !current_user.can_publish?
   button.btn.disabled.pull-right Publish
 - else
   = form_tag(publish_article_path(@article.id), method: :put, class: 'pull-right')
