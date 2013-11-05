@@ -9,13 +9,15 @@
 <body>
 <%= nav_bar  do %>
   <%= menu_group do %>
-   <%= menu_item "Home", root_path %>
-   <%= menu_item "Users", users_path %>
-   <%= menu_item "Articles", articles_path %>
+    <% menu_for_role.each do |name,url| %>
+      <%= menu_item name, url %>
+    <%end%>
   <% end %>
 
   <%= menu_group :pull => :right do %>
-    <%= menu_item "New Article", new_article_path %>
+    <% action_menu_for_role.each do |name,url| %>
+      <%= menu_item name, url %>
+    <%end%>
     <%= render 'devise/menu/header_links' %>
   <% end %>
 
