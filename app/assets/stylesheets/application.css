@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+
+  .primary-error-text
+  {
+    color: #B94A48;
+  }

@@ -13,3 +13,6 @@ en:
      update_error: An error occured while updating the article
      not_allowed_to_publish: Only admins are allowed to publish articles
      does_not_exist: The request article does not exist
+
+  user:
+     successfully_created: User was succesfully created

@@ -1,0 +1,33 @@
+<h2>Create User</h2>
+
+
+  <%  if @user%> 
+    <%= render partial: 'errors/validation_error', locals: {errors: @user.errors} %>
+  <% end %>
+
+<%= form_for(@user, :as => :user, :url => users_path) do |f| %>
+
+  <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true %></div>
+
+  <br/>
+  <% if user_signed_in? %>
+    <div><%= f.label :role %>
+      <%= f.label :role, "Reporter", :value => "reporter", class: 'radio inline' %>
+      <%= f.radio_button :role, "reporter", checked: true %>
+      <%= f.label :role, "Editor", :value => "editor"  , class: 'radio inline' %>
+      <%= f.radio_button :role, "editor" %> 
+      <%= f.label :role, "Admin", :value => "admin"  , class: 'radio inline' %>
+      <%= f.radio_button :role, "admin" %>
+    </div>
+    <br />
+  <% end %>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Create User" %></div>
+<% end %>
