@@ -5,7 +5,7 @@
   <% end %>
 
 
-  <%= form_for(@user, :as => :user, :url => users_path(@user.id), html: {method: 'PUT' }) do |f| %>
+  <%= form_for(@user, :as => :user, :url => user_path(@user.id), html: {method: 'PUT' }) do |f| %>
   <div>
     <%= f.label :email %>
     <strong> <%= @user.email %> </strong>
@@ -14,11 +14,11 @@
   <br/>
     <div><%= f.label :role %>
       <%= f.label :role, "Reporter", :value => "reporter", class: 'radio inline' %>
-      <%= f.radio_button :role, "reporter", checked: true %>
+      <%= f.radio_button :role, "reporter", checked: @user.is_reporter? %>
       <%= f.label :role, "Editor", :value => "editor"  , class: 'radio inline' %>
-      <%= f.radio_button :role, "editor" %> 
+      <%= f.radio_button :role, "editor" , checked: @user.is_editor?%> 
       <%= f.label :role, "Admin", :value => "admin"  , class: 'radio inline' %>
-      <%= f.radio_button :role, "admin" %>
+      <%= f.radio_button :role, "admin", checked: @user.is_admin? %>
     </div>
     <br />
 

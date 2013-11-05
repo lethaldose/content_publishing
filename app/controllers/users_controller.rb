@@ -38,8 +38,8 @@ class UsersController < ApplicationController
     params[:user].delete(:email)
     @user = User.find(params[:id])
     @user.role = get_role_from_params
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.password = params[:user][:password] if params[:user][:password].present?
+    @user.password_confirmation = params[:user][:password_confirmation] if params[:user][:password_confirmation].present?
 
     if @user.save
       flash[:success] = I18n.t('user.successfully_updated')
