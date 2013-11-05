@@ -3,6 +3,7 @@ ruby "1.9.3"
 
 gem 'rails', '3.2.15'
 gem 'devise'
+gem 'cancan'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 

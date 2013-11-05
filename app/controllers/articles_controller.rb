@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:show]
   before_filter :article_exists? , only: [:show, :edit, :update]
 
+  authorize_resource
+
   def index
     @articles = Article.editable_by(current_user)
   end

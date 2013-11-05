@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
- before_filter :check_if_admin
+ authorize_resource
 
  def index
     if !current_user.is_admin?
@@ -27,14 +27,5 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-  end
-
-  private
-
-  def check_if_admin
-    if !user_signed_in? or !current_user.is_admin?
-      response.status = 401
-      raise ActiveResource::UnauthorizedAccess.new response
-    end
   end
 end
