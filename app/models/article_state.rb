@@ -18,13 +18,18 @@ module ArticleState
     self.state == PUBLISHED
   end
 
-  def publish!
+  def publish! user
     self.state = PUBLISHED
+    self.publisher = user
     self.save!
   end
 
   def disallow_published_article_update
-    errors.add(:state, "cannot update published articles")
-    return false if self.persisted? && Article.find(self.id).published?
+    if self.persisted? && Article.find(self.id).published?
+      errors.add(:state, "cannot update published articles")
+      return false
+    end
+
+    true
   end
 end

@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
       return
     end
 
-    @article.publish!
+    @article.publish!(current_user)
     flash[:success] = I18n.t('articles.successfully_published')
     redirect_to articles_path
   end

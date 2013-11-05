@@ -8,5 +8,4 @@
     span.badge.article-state #{@original_article.state}
     = render partial: 'publish'
   hr
-
   = render partial: 'form', locals: { method: 'put', url: "#{article_path(@article.id)}"}

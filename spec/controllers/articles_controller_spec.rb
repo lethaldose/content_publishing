@@ -124,7 +124,7 @@ describe ArticlesController do
   context :publish do
 
     before :each do
-      login_admin
+      @admin = login_admin
     end
 
     it 'should publish the article' do
@@ -138,7 +138,12 @@ describe ArticlesController do
       flash[:success].should == I18n.t('articles.successfully_published')
 
       article.reload
+      @admin.reload
+
       article.should be_published
+      article.publisher.should == @admin
+      @admin.published_articles.size.should have(1).item
+      @admin.published_articles.should == [article]
     end
   end
 
