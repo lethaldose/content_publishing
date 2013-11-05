@@ -16,6 +16,7 @@ class Article < ActiveRecord::Base
   after_initialize :init
 
   scope :all_for_author, ->(author) { where(author_id: author).order(SORT_BY_UPDATED_AT_DESC) }
+  scope :published_articles, -> { where(state: ArticleState::PUBLISHED) }
 
   def init
     self.state = DRAFT if self.new_record?

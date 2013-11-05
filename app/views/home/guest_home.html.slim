@@ -1,0 +1,17 @@
+h2 Welcome!
+hr
+h4 
+  span You can read all the published articles
+
+.guest-home
+  ul.thumbnails
+    - @published_articles.each do |art|
+      li.span4
+        .caption
+          h3 
+            .alert.alert-info
+              = art.name
+          a
+            p
+              = display_content_text(art.content)
+

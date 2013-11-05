@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def get_menu_items
     @@menu ||= {
-      guest: { view: {"Articles" => articles_path}, action: {}} ,
+      guest: { view: {}, action: {}} ,
       reporter: {view:{"Home" => root_path, "Articles" => articles_path}, action: { "New Article" => new_article_path}},
       editor: {view:{"Home" => root_path, "Articles" => articles_path}, action: {"New Article" => new_article_path}},
       admin: {view:{"Home" => root_path, "Articles" => articles_path, "Users" => users_path}, action: {"New Article" => new_article_path, "New User" => new_user_path}}

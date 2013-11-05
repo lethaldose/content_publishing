@@ -8,6 +8,16 @@ describe HomeController do
     Article.destroy_all
   end
 
+  context :guest do
+    it 'should give count of published articles' do
+      FactoryGirl.create(:article, state: ArticleState::PUBLISHED)
+      FactoryGirl.create(:article, state: ArticleState::PUBLISHED)
+      FactoryGirl.create(:article, state: ArticleState::DRAFT)
+      get :index
+      assigns(:published_articles).should have(2).items
+    end
+  end
+
   context :reporter do
 
     before :each do
