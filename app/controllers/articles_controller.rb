@@ -15,7 +15,11 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.where(id:params[:id], state: ArticleState::PUBLISHED).first
+    if !@article
+      render_error(404, I18n.t("articles.does_not_exist"))
+      return
+    end
   end
 
   def create

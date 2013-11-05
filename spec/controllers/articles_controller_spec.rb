@@ -5,7 +5,7 @@ describe ArticlesController do
   include ::ControllerMacros
 
   before :each do
-    @logged_in_user = login_user
+    @logged_in_user = login_user FactoryGirl.create(:editor)
     Article.delete_all
   end
 
@@ -66,11 +66,16 @@ describe ArticlesController do
 
   context :show do
     it 'should render article' do
-      article = FactoryGirl.create(:article)
+      article = FactoryGirl.create(:article, state: ArticleState::PUBLISHED)
       get :show, {id: article.id}
 
       response.should be_success
       assigns(:article).id.should == article.id
+    end
+    it 'should raise error for unpublished article' do
+      article = FactoryGirl.create(:article, state: ArticleState::DRAFT)
+      get :show, {id: article.id}
+      assigns(:article).should be_nil
     end
   end
 
