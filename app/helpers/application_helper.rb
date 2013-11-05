@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def user_display_name
+    "#{current_user.email} (#{current_user.role.name.capitalize})" if user_signed_in?
+  end
+
   def menu_for_role
     if user_signed_in?
       get_menu_items[current_user.role.name.to_sym][:view]
