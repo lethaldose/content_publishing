@@ -4,6 +4,7 @@ describe User do
 
   context :articles do
     it { should have_many(:articles) }
+    it { should have_many(:published_articles) }
   end
 
   context :can_publish_article do

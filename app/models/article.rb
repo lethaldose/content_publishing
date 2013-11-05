@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   validates :author, presence: true
 
   belongs_to :author, class_name: User.name
+  belongs_to :publisher, class_name: User.name
 
   after_initialize :init
 

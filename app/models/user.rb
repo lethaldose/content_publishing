@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   belongs_to :role
   has_many :articles, foreign_key: :author_id
+  has_many :published_articles, foreign_key: :publisher_id, class_name: Article.name
+
   before_create :set_default_role
 
   delegate :is_admin?, :is_reporter?, :is_editor?, to: :role

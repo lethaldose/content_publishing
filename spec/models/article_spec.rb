@@ -11,6 +11,7 @@ describe Article do
 
   context :author do
     it { should belong_to(:author) }
+    it { should belong_to(:publisher) }
 
     it 'should give articles editable by author' do
       article = FactoryGirl.create(:article)
