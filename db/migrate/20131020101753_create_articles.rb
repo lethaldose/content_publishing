@@ -2,7 +2,7 @@ class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles do |t|
       t.string :name
-      t.string :content
+      t.text :content
       t.string :state
 
       t.timestamps
