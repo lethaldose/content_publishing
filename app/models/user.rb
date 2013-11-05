@@ -12,18 +12,7 @@ class User < ActiveRecord::Base
   has_many :articles, foreign_key: :author_id
   before_create :set_default_role
 
-
-  def is_admin?
-    self.role.name == 'admin'
-  end
-
-  def is_editor?
-    self.role.name == 'editor'
-  end
-
-  def is_reporter?
-    self.role.name == 'reporter'
-  end
+  delegate :is_admin?, :is_reporter?, :is_editor?, to: :role
 
   def can_publish?
     is_admin? or is_editor?
