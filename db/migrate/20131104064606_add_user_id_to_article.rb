@@ -1,5 +1,5 @@
 class AddUserIdToArticle < ActiveRecord::Migration
   def change
-    add_column :articles, :author_id, :string
+    add_column :articles, :author_id, :integer
   end
 end

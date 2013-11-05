@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20131105133719) do
     t.string   "state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "author_id"
+    t.integer  "author_id"
     t.integer  "publisher_id"
   end
 
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20131105133719) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "role_id"
-    t.string   "user_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

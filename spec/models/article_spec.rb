@@ -71,13 +71,13 @@ describe Article do
   context :publish do
     it 'should have published state' do
       article = FactoryGirl.create(:article)
-      article.publish!
+      article.publish! FactoryGirl.create(:editor)
       article.should be_published
     end
 
     it 'should not allow update of published records' do
       article = FactoryGirl.create(:article)
-      article.publish!
+      article.publish! FactoryGirl.create(:editor)
       article.name = 'random-foo'
       article.save.should be_false
       article.errors[:state].should_not be_empty

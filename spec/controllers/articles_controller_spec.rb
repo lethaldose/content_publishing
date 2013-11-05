@@ -5,7 +5,7 @@ describe ArticlesController do
   include ::ControllerMacros
 
   before :each do
-    login_user
+    @logged_in_user = login_user
     Article.delete_all
   end
 
@@ -95,7 +95,7 @@ describe ArticlesController do
 
     it 'should not update published records' do
       article = FactoryGirl.create(:article)
-      article.publish!
+      article.publish! @logged_in_user
 
       request_params = {id: article.id, article: {name: 'foo', content: 'bar'}}
       put :update, request_params
@@ -142,7 +142,7 @@ describe ArticlesController do
 
       article.should be_published
       article.publisher.should == @admin
-      @admin.published_articles.size.should have(1).item
+      @admin.published_articles.should have(1).item
       @admin.published_articles.should == [article]
     end
   end
