@@ -1,18 +1,18 @@
-<h2>Create User</h2>
+<h2>Edit User</h2>
 <hr/>
-
-
   <%  if @user%> 
     <%= render partial: 'errors/validation_error', locals: {errors: @user.errors} %>
   <% end %>
 
+
 <%= form_for(@user, :as => :user, :url => users_path) do |f| %>
 
-  <div><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true %></div>
+  <div>
+    <%= f.label :email %>
+    <strong> <%= @user.email %> </strong>
+  </div>
 
   <br/>
-  <% if user_signed_in? %>
     <div><%= f.label :role %>
       <%= f.label :role, "Reporter", :value => "reporter", class: 'radio inline' %>
       <%= f.radio_button :role, "reporter", checked: true %>
@@ -22,7 +22,6 @@
       <%= f.radio_button :role, "admin" %>
     </div>
     <br />
-  <% end %>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
@@ -30,5 +29,5 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Create User",  class: "btn btn-primary btn-default" %></div>
+  <div><%= f.submit "Save",  class: "btn btn-primary btn-default" %></div>
 <% end %>

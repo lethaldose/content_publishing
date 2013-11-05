@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
  authorize_resource
+ before_filter :user_exists? , only: [:edit]
 
  def index
     if !current_user.is_admin?
@@ -27,5 +28,17 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+  private
+
+  def user_exists?
+    unless User.exists?(params[:id])
+      render_error(404, I18n.t("user.does_not_exist"))
+      return
+    end
   end
 end

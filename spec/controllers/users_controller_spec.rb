@@ -38,6 +38,27 @@ describe  UsersController do
     end
 
   end
+
+  context :edit do
+    before :each do
+      login_admin
+    end
+
+    it 'should show user details' do
+      user = FactoryGirl.create(:user)
+      get :edit, {id: user.id}
+
+      response.should be_success
+      response.should render_template :edit
+
+      assigns(:user).id.should == user.id
+    end
+
+    it 'should give error invalid id' do
+      get :edit, {id: 'invalid-id'}
+      response.should render_template 'errors/details'
+    end
+  end
 end
 
 
