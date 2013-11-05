@@ -17,3 +17,5 @@ en:
   user:
      successfully_created: User was succesfully created
      does_not_exist: The requested user does not exist
+     update_error: An error occured while updating the user
+     successfully_updated: User was succesfully updated
