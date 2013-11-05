@@ -5,8 +5,9 @@ describe Ability do
   context :guest do
     let(:user){ nil }
     subject(:ability){ Ability.new(user) }
+    let(:published_article) {a=Article.new; a.state=ArticleState::PUBLISHED; a }
 
-    it{ should be_able_to(:read, Article.new) }
+    it{ should be_able_to(:read, published_article) }
   end
 
   context :reporter do

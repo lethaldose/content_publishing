@@ -5,7 +5,7 @@ class Ability
     user ||= User.new
 
     if !user.role
-      can :read, [Article]
+      can :read, [Article],  {:state => ArticleState::PUBLISHED}
     elsif user.is_admin?
       can :manage, :all
     elsif user.is_editor?
